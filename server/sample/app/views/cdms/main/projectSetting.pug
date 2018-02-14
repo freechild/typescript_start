@@ -1,0 +1,31 @@
+extends ../main.pug
+
+block content
+  
+  #accordion
+    h3 ADD PROJECT
+    div
+      .input-group
+        input.form-control#project(type="text")  
+        span.input-group-btn
+          button.btn.btn-default#addProject(type="button") ADD
+    h3 EDIT PROJECT
+    div
+      .container2
+        #searchLayer
+          .input-group
+            input.form-control#searchProjects(type="text" placeholder="Search for...")  
+            span.input-group-btn
+              button.btn.btn-default#searchProject(type="button") Search
+        #searchedLayer
+    h3 EDIT USER
+    div
+      .container3
+        #searchUserLayer
+          .input-group
+            input.form-control#Users(type="text" placeholder="Search for...")  
+            span.input-group-btn
+              button.btn.btn-default#searchUser(type="button") Search      
+        #searchedUserLayer
+          form.navbar-form
+            .form-group  

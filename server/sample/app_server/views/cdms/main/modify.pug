@@ -1,0 +1,47 @@
+extends ../main.pug
+
+block content
+  h1.page-header Modify
+
+  .table-responsive
+    table.table.table-striped
+      thead
+        tr
+          th Profile
+          th input
+          th ex
+      tbody
+        - 
+          var email,phone,company
+          
+          result.forEach(function(item){ 
+            email = item.email
+            phone = item.phone
+            company = item.company
+           }) 
+          var list =[];
+          list[0] = ["id",id]  
+          list[1] = ["pw",""]
+          list[2] = ["email", email]
+          list[3] = ["phone", phone]
+          list[4] = ["company", company]
+
+        -for(var i = 0 ; i < list.length ; ++i){
+          tr
+            -for(var j = 0 ; j < list[i].length ; ++j)
+              if(j == 0 )
+                td(class="eachKey")=list[i][j]
+              else
+                td(class="eachValue")
+                  if(i==0)
+                    input(id=list[i][0] value=list[i][1] readonly)
+                  else if(i==1)
+                    input(id=list[i][0] value=list[i][1] type="password")  
+                  else
+                    input(id=list[i][0] value=list[i][1])  
+            td(class="checkValue" id="each" + list[i][0])
+        -}
+            
+  p            
+    button#modifyBtn.btn.btn-lg.btn-primary.btn-block(type='submit') 수정하기
+  input(type="hidden" id="hiddenEmail" value=email)  

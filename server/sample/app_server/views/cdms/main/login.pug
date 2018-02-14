@@ -1,0 +1,67 @@
+extends ../_bootstrap
+append styles
+	// Custom styles for this template
+	link(href='/cdms/css/signin.css', rel='stylesheet')
+	link(href='/cdms/css/style.css', rel='stylesheet')
+block body    
+	.container
+		form#loginLayer.form-signin
+			h2.form-signin-heading
+				img(src="images/frontLogo.png")
+				br
+				div LOGIN
+			//- label.sr-only(for='inputEmail') Email address
+			input#loginId.form-control(type='value', placeholder='ID', required='', autofocus='')
+			//- label.sr-only(for='inputPassword') Password
+			input#loginPw.form-control(type='password', placeholder='Password', required='')
+			
+			button.btn.btn-lg.btn-primary.btn-block#loginForm LOGIN
+			.lineDiv 
+				span or
+			.joinDiv 
+				span#showJoinLayer JOIN US
+				
+		#joinLayer(style="display:none;")
+			h2.form-signin-heading
+				img(src="images/frontLogo.png")
+				br
+				div JOIN US
+			.table-responsive
+				table.table.table-striped
+					thead
+						tr
+							th Profile
+							th input
+							th ex
+					tbody
+						-
+							var list = [];
+							list[0] = ["id","아이디 입력","joinId","영문으로 입력해주세요"];
+							list[1] = ["pw","패스워드 입력","joinPw","숫자와 영문자를 섞어주세요"];
+							list[2] = ["email","이메일 입력","joinEmail","이메일형식으로 입력해주세요"];
+							list[3] = ["name","이름 입력","joinName"];
+							list[4] = ["phone","핸드폰 입력","joinPhone","숫자만 입력해주세요"];
+							list[5] = ["company","회사명 입력","joinCompany"]
+						-for(var i = 0 ; i < list.length ; ++i)
+							tr
+								-for(var j = 0 ; j < 2 ; ++j)
+									if(j==0)
+										td.eachKey=list[i][j]
+									else
+										td.eachValue
+											if(i==0)
+												input(id=list[i][2]  placeholder=list[i][1])
+											else if(i==1)
+												input(id=list[i][2]  type="password" placeholder=list[i][1])
+											else
+												input(id=list[i][2] value=list[i][1])
+								td(class="checkValue" id="each" + list[i][0])=list[i][3]
+				p
+					button#membersForm.btn.btn-lg.btn-primary.btn-block(type='submit') 가입하기
+					.lineDiv
+						span or
+					.joinDiv 
+						span#showLogLayer LOGIN
+		
+											
+						

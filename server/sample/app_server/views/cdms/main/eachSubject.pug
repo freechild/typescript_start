@@ -1,0 +1,54 @@
+extends ../main.pug
+block content
+  .row.placeholders
+    .col-xs-12.col-sm-12.placeholder      
+  - if (doc)
+      h1.sub-header= subject
+      .table-responsive.table-bordered
+        table.table.table-striped.table-bordered
+          thead
+            tr
+              th(scope="col" rowspan="2") 주차명
+              th(scope="col" colspan="3") 스토리보드
+              th(scope="col" colspan="3") 설계
+              th(scope="col" colspan="3") 영상
+              th(scope="col" colspan="3") 개발물
+              th(scope="col" rowspan="2") 전체진행률
+            tr
+              -for(let i = 1 ; i <= 12; ++i)
+                -if(i%3 == 1)
+                  th(scope="col") 1차검수
+                -else if(i%3 == 2)  
+                  th(scope="col") 2차검수
+                -else
+                  th(scope="col") 최종검수
+          tbody
+             -for(let i = 0 ; i < doc.length; ++i)
+               tr(id="id_"+doc[i]._id)
+                td(id="item_" + i + "_" + 0)=doc[i].chapter
+                -for (var j = 0; j < 3; j++) 
+                  td(id="storyboard_"+i+"_"+ (j+1) +"_" +j)
+                    -if(doc[i].storyboard.length)
+                      a=doc[i].storyboard[j]
+                    -else
+                      a 0% 
+                -for (var j = 0; j < 3; j++)       
+                  td(id="designs_"+i+"_"+ (j+4)+"_" +j)    
+                    -if(doc[i].designs.length)
+                      a=doc[i].designs[j]
+                    -else
+                      a 0%  
+                -for (var j = 0; j < 3; j++)       
+                  td(id="media"+i+"_"+ (j+7)+"_" +j)    
+                    -if(doc[i].media.length)
+                      a=doc[i].media[j]
+                    -else
+                      a 0%  
+                -for (var j = 0; j < 3; j++)       
+                  td(id="development_"+i+"_"+ (j+10)+"_" +j)
+                    -if(doc[i].development.length)
+                      a=doc[i].development[j]
+                    -else
+                      a 0%            
+                td(id="item_" + i + "_" + 13) 0%
+              

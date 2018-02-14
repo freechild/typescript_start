@@ -1,0 +1,33 @@
+extends ../main.pug
+block content
+  h1.page-header 프로젝트 현황
+  .row.placeholders
+    .col-xs-12.col-sm-12.placeholder
+      #chart_div
+  -
+    // db 에서 값 받으면 뿌릴떄는 list 는 db값 bin
+    // db에서 각각의 서브젝트 _id 값 저장해서 인덱싱해야함
+    // 각각 서브젝트 _id값은  오브젝트_id값 + _ + 해쉬코드추천 +_+ 서브젝트_id값
+    // var t2 = JSON.parse(projectData);
+      
+  - if (doc)
+    - if (doc.length)
+      -for(let i = 0 ; i < doc.length; ++i){        
+        h2.sub-header= doc[i].project
+        .table-responsive.table-bordered
+          table.table.table-striped.table-bordered
+            thead
+              tr
+                th 차시명
+                th 설계
+                th 영상
+                th 개발물
+            tbody
+              // -for(let j = 0 ; j < t2.project[i].subject.length; ++j)
+              //   tr
+              //     td=t2.project[i].subject[j].subjectName
+              //     td=t2.project[i].subject[j].design
+              //     td=t2.project[i].subject[j].media
+              //     td=t2.project[i].subject[j].development
+              
+      -}
